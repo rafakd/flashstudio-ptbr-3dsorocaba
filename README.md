@@ -7,23 +7,26 @@ Instalador da tradução em Português do Brasil para o **Flash Studio / Orca-Fl
 Baixe o arquivo **3D-Sorocaba-Flash-Studio-PTBR.exe** na [última release](../../releases/latest), feche o Flash Studio e execute.
 Dentro do programa, o botão **Verificar atualizações** busca novas versões direto daqui.
 
-## Como funciona este repositório
+## Como funciona a tradução
 
-Esta é uma versão modificada do projeto original [lexone/flashstudio_ptbr](https://github.com/lexone/flashstudio_ptbr) (3D Brasília).
-Todos os dias o workflow [`build-sorocaba.yml`](.github/workflows/build-sorocaba.yml):
+O instalador **não altera o programa Flash Studio** (nenhum `.exe` ou `.dll` é modificado), não precisa de administrador e não cria serviços nem tarefas agendadas. Ele mexe apenas nos arquivos de idioma do seu usuário:
 
-1. confere a última release do projeto original;
-2. aplica a identidade 3D Sorocaba com [`branding/apply_branding.py`](branding/apply_branding.py) (nome, logo, ícone, cores, créditos e canal de atualização);
-3. compila e publica uma release aqui, com o `.exe`, o SHA-256 e o código-fonte completo (`codigo-fonte.zip`).
+| O que | Onde |
+|---|---|
+| Catálogo de textos em português (`strings.<md5>.json`, `active.json`) | `%APPDATA%\Orca-Flashforge\i18n\slice` |
+| Idioma do programa (`"language": "pt_BR"`) | `%APPDATA%\Orca-Flashforge\Orca-Flashforge.conf` |
+| Backup automático, feito antes de qualquer mudança | `%APPDATA%\Orca-Flashforge\i18n\backups-3dsorocaba` |
 
-Para gerar manualmente: **Actions → Gerar instalador 3D Sorocaba → Run workflow**.
-Para republicar após mudar só a marca: aumente `BRANDING_REVISION` em `branding/apply_branding.py` e rode o workflow.
+- **Feche o Flash Studio** antes de instalar. Abra-o pelo menos uma vez antes, para que a pasta de configuração exista.
+- **Só traduz o que reconhece:** textos de versões mais novas do Flash Studio que ainda não estão no catálogo continuam em inglês, sem quebrar nada.
+- **Proteção (opcional, vem marcada):** deixa os arquivos de idioma como somente leitura, para o Flash Studio não voltar ao inglês quando atualizar. O botão **Liberar atualizações** remove essa proteção.
+- **Desfazer:** o botão **Restaurar último backup** volta os arquivos exatamente como estavam antes da instalação.
 
 ## Créditos e licença
 
 - Instalador original: **lexone / 3D Brasília** — https://github.com/lexone/flashstudio_ptbr
 - Catálogos e terminologia: projetos [OrcaSlicer](https://github.com/OrcaSlicer/OrcaSlicer) e [Orca-Flashforge](https://github.com/FlashForge/Orca-Flashforge)
-- Modificações de marca: **3D Sorocaba**
+- Modificações de marca: **3D Sorocaba**. As versões são geradas automaticamente a partir do projeto original; o código-fonte completo de cada uma está na release (`codigo-fonte.zip`).
 
 Distribuído sob a **GNU Affero General Public License v3** (veja [LICENSE](LICENSE)).
 Projeto independente, sem afiliação oficial com a FlashForge.
